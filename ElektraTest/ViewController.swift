@@ -90,6 +90,22 @@ let labelTwo: UILabel = {
     return label
 }()
 
+let participatingBrandsCollectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
+    layout.itemSize = CGSize(width: 200, height: 60)
+    let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collection.backgroundColor = .clear
+    collection.showsHorizontalScrollIndicator = false
+    collection.translatesAutoresizingMaskIntoConstraints = false
+    return collection
+}()
+
+let participatingBrandsArray = ["samsung", "italika", "apple", "lg"]
+
+let itemParticipatingBrand = "itemParticipatingBrand"
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -165,6 +181,8 @@ class ViewController: UIViewController {
         sportsImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         sportsImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         sportsImage.heightAnchor.constraint(equalToConstant: 135).isActive = true
+        
+        setupCollectionView()
     }
     
     func setupLabels(){
@@ -180,6 +198,38 @@ class ViewController: UIViewController {
         labelTwo.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
         labelTwo.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 1000).isActive = true
         labelTwo.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+    }
+    
+    func setupCollectionView(){
+        
+        participatingBrandsCollectionView.register(ParticipatingBrandsCollectionViewCell.self, forCellWithReuseIdentifier: itemParticipatingBrand)
+        
+        participatingBrandsCollectionView.delegate = self
+        participatingBrandsCollectionView.dataSource = self
+        
+        contentView.addSubview(participatingBrandsCollectionView)
+        participatingBrandsCollectionView.topAnchor.constraint(equalTo: sportsImage.bottomAnchor, constant: 20).isActive = true
+        participatingBrandsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        participatingBrandsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        participatingBrandsCollectionView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        
     }
 }
 
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return participatingBrandsArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let item = participatingBrandsCollectionView.dequeueReusableCell(withReuseIdentifier: itemParticipatingBrand, for: indexPath) as! ParticipatingBrandsCollectionViewCell
+        item.participatingBrandImage.backgroundColor = .clear
+        item.backgroundColor = .clear
+        let image = participatingBrandsArray[indexPath.row]
+        item.participatingBrandImage.image = UIImage(named: image)
+        return item
+    }
+    
+}
