@@ -13,10 +13,6 @@ class ParticipatingBrandsCollectionViewCell: UICollectionViewCell {
     let participatingBrandImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-//        image.clipsToBounds = true
-//        image.layer.cornerRadius = 5
-//        image.layer.borderColor = UIColor.lightGray.cgColor
-//        image.layer.borderWidth = 1
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()

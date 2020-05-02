@@ -10,7 +10,7 @@ import UIKit
 
 let scrollView: UIScrollView = {
     let scroll = UIScrollView()
-    scroll.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1500)
+    scroll.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 2000)
     scroll.translatesAutoresizingMaskIntoConstraints = false
     return scroll
 }()
@@ -102,9 +102,22 @@ let participatingBrandsCollectionView: UICollectionView = {
     return collection
 }()
 
+let bestSellerCollectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    layout.sectionInset = UIEdgeInsets(top: -100, left: 40, bottom: 0, right: 40)
+    layout.itemSize = CGSize(width: 300, height: 400)
+    let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collection.backgroundColor = .clear
+    collection.showsHorizontalScrollIndicator = false
+    collection.translatesAutoresizingMaskIntoConstraints = false
+    return collection
+}()
+
 let participatingBrandsArray = ["samsung", "italika", "apple", "lg"]
 
 let itemParticipatingBrand = "itemParticipatingBrand"
+let itemBestSeller = "itemBestSeller"
 
 class ViewController: UIViewController {
 
@@ -193,11 +206,11 @@ class ViewController: UIViewController {
         preferredCategoriesLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         preferredCategoriesLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        contentView.addSubview(labelTwo)
-        labelTwo.topAnchor.constraint(equalTo: preferredCategoriesLabel.bottomAnchor, constant: 900).isActive = true
-        labelTwo.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
-        labelTwo.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 1000).isActive = true
-        labelTwo.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//        contentView.addSubview(labelTwo)
+//        labelTwo.topAnchor.constraint(equalTo: preferredCategoriesLabel.bottomAnchor, constant: 900).isActive = true
+//        labelTwo.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
+//        labelTwo.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 1000).isActive = true
+//        labelTwo.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         
     }
@@ -215,21 +228,59 @@ class ViewController: UIViewController {
         participatingBrandsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         participatingBrandsCollectionView.heightAnchor.constraint(equalToConstant: 130).isActive = true
         
+        
+        
+        
+        
+        bestSellerCollectionView.register(BestSellerCollectionViewCell.self, forCellWithReuseIdentifier: itemBestSeller)
+        
+        bestSellerCollectionView.delegate = self
+        bestSellerCollectionView.dataSource = self
+        
+        contentView.addSubview(bestSellerCollectionView)
+        bestSellerCollectionView.topAnchor.constraint(equalTo: participatingBrandsCollectionView.bottomAnchor, constant: 20).isActive = true
+        bestSellerCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        bestSellerCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        bestSellerCollectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        
     }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return participatingBrandsArray.count
+        
+        if participatingBrandsCollectionView == collectionView{
+            return participatingBrandsArray.count
+        }
+        else {
+            return 2
+        }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = participatingBrandsCollectionView.dequeueReusableCell(withReuseIdentifier: itemParticipatingBrand, for: indexPath) as! ParticipatingBrandsCollectionViewCell
-        item.participatingBrandImage.backgroundColor = .clear
-        item.backgroundColor = .clear
-        let image = participatingBrandsArray[indexPath.row]
-        item.participatingBrandImage.image = UIImage(named: image)
-        return item
+        if participatingBrandsCollectionView == collectionView{
+            let item = participatingBrandsCollectionView.dequeueReusableCell(withReuseIdentifier: itemParticipatingBrand, for: indexPath) as! ParticipatingBrandsCollectionViewCell
+            item.participatingBrandImage.backgroundColor = .clear
+            item.backgroundColor = .clear
+            let image = participatingBrandsArray[indexPath.row]
+            item.participatingBrandImage.image = UIImage(named: image)
+            return item
+        }
+        else{
+            let item = bestSellerCollectionView.dequeueReusableCell(withReuseIdentifier: itemBestSeller, for: indexPath) as! BestSellerCollectionViewCell
+            item.backgroundColor = .clear
+            item.phoneImage.image = UIImage(named: "phoneOne")
+            if (indexPath.row == 1){
+                item.previousPriceLabel.text = "$3,499.00"
+                item.currentPriceLabel.text = "2,699.00"
+                item.weekPriceLabel.text = "Desde $79.00 semanales"
+                item.phoneImage.image = UIImage(named: "phoneTwo")
+            }
+            return item
+        }
+        
     }
     
 }
