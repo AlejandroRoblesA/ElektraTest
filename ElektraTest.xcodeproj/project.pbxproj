@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9210B40245F2AEF003B50C4 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9210B3F245F2AEF003B50C4 /* Request.swift */; };
 		A94A402A245DF88F001D6D21 /* ParticipatingBrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A4029245DF88F001D6D21 /* ParticipatingBrandsCollectionViewCell.swift */; };
 		A94A402C245E2A21001D6D21 /* BestSellerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A402B245E2A21001D6D21 /* BestSellerCollectionViewCell.swift */; };
 		A971EFE4245E828800FFC6E9 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971EFE3245E828800FFC6E9 /* ProductsViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A9210B3F245F2AEF003B50C4 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A94A4029245DF88F001D6D21 /* ParticipatingBrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipatingBrandsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A94A402B245E2A21001D6D21 /* BestSellerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerCollectionViewCell.swift; sourceTree = "<group>"; };
 		A971EFE3245E828800FFC6E9 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				A971EFE5245E86A700FFC6E9 /* ProductTableViewCell.swift */,
 				A971EFE7245E952D00FFC6E9 /* SignUpViewController.swift */,
 				A9D6CB31245C83D8004E88D7 /* Assets.xcassets */,
+				A9210B3F245F2AEF003B50C4 /* Request.swift */,
 				A9D6CB33245C83D8004E88D7 /* LaunchScreen.storyboard */,
 				A9D6CB36245C83D8004E88D7 /* Info.plist */,
 			);
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9D6CB2D245C837A004E88D7 /* ViewController.swift in Sources */,
+				A9210B40245F2AEF003B50C4 /* Request.swift in Sources */,
 				A971EFE8245E952D00FFC6E9 /* SignUpViewController.swift in Sources */,
 				A94A402C245E2A21001D6D21 /* BestSellerCollectionViewCell.swift in Sources */,
 				A94A402A245DF88F001D6D21 /* ParticipatingBrandsCollectionViewCell.swift in Sources */,
