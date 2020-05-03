@@ -119,22 +119,33 @@ let participatingBrandsArray = ["samsung", "italika", "apple", "lg"]
 let itemParticipatingBrand = "itemParticipatingBrand"
 let itemBestSeller = "itemBestSeller"
 
+
+
 class ViewController: UIViewController {
 
+    let showProductsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Ver Todas", for: .normal)
+        button.backgroundColor = .red
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigation()
         setupScroll()
         
+        showProductsButton.addTarget(self, action: #selector(handleShowProducts), for: .touchUpInside)
     }
     
     func setupNavigation(){
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .red
-        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Hot Sale"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user"), style: .plain, target: self, action: #selector(handleCreateUser))
     }
     
     func setupScroll(){
@@ -162,6 +173,12 @@ class ViewController: UIViewController {
         topHotSaleImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         topHotSaleImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         topHotSaleImage.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        
+        contentView.addSubview(showProductsButton)
+        showProductsButton.topAnchor.constraint(equalTo: topHotSaleImage.bottomAnchor, constant: 0).isActive = true
+        showProductsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        showProductsButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        showProductsButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         contentView.addSubview(hotSaleYellowImage)
         hotSaleYellowImage.topAnchor.constraint(equalTo: topHotSaleImage.bottomAnchor, constant: 30).isActive = true
@@ -243,6 +260,18 @@ class ViewController: UIViewController {
         bestSellerCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         bestSellerCollectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         
+    }
+    
+    @objc func handleCreateUser(){
+        print("Create user")
+        let controller = SignUpViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc func handleShowProducts(){
+        
+        let controller = ProductsViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
