@@ -14,6 +14,7 @@ extension ProductsViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Productos"
         setupTableView()
     }
     
