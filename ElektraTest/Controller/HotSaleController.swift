@@ -20,8 +20,12 @@ extension HotSaleViewController{
         setupScroll()
         
         preferredCategoriesLabel.textColor = elektraBlue()
+        participatingBrandsLabel.textColor = elektraBlue()
+        collectionsLabel.textColor = elektraBlue()
+        bestSellerLabel.textColor = elektraBlue()
         
         showProductsButton.addTarget(self, action: #selector(handleShowProducts), for: .touchUpInside)
+        seeMoreButton.addTarget(self, action: #selector(handleShowProducts), for: .touchUpInside)
     }
     
     //MARK: - Handle's
