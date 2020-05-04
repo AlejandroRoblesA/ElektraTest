@@ -36,7 +36,6 @@ class HotSaleViewController: UIViewController {
 
     let hotSaleYellowImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "hotsale")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -53,7 +52,6 @@ class HotSaleViewController: UIViewController {
 
     let creditoImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "credito")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -63,7 +61,6 @@ class HotSaleViewController: UIViewController {
         let image = UIImageView()
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
-        image.image = UIImage(named: "biker")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -73,7 +70,6 @@ class HotSaleViewController: UIViewController {
         let image = UIImageView()
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
-        image.image = UIImage(named: "shoes")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -83,7 +79,6 @@ class HotSaleViewController: UIViewController {
         let image = UIImageView()
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
-        image.image = UIImage(named: "sports")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image

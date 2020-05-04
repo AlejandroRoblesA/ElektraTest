@@ -28,6 +28,18 @@ extension HotSaleViewController{
         seeMoreButton.addTarget(self, action: #selector(handleShowProducts), for: .touchUpInside)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getImages()
+    }
+    
+    func getImages(){
+        hotSaleYellowImage.loadImageUsingCacheWithUrlString(urlString: "http://hnoscarrasco.com/images/hotsale")
+        creditoImage.loadImageUsingCacheWithUrlString(urlString: "http://hnoscarrasco.com/images/cekt")
+        bikerImage.loadImageUsingCacheWithUrlString(urlString: "http://hnoscarrasco.com/images/Imagen%20producto6")
+        shoesImage.loadImageUsingCacheWithUrlString(urlString: "http://hnoscarrasco.com/images/Imagen%20producto5")
+        sportsImage.loadImageUsingCacheWithUrlString(urlString: "http://hnoscarrasco.com/images/Imagen%20producto4")
+    }
+    
     //MARK: - Handle's
     @objc func handleCreateUser(){
         let controller = SignUpViewController()
