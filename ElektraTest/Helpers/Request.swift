@@ -44,7 +44,7 @@ class Request: NSObject{
             {
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
                 {
-                    print(json)
+    
                     completion(json)
                 }
             }

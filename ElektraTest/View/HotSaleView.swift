@@ -8,121 +8,125 @@
 
 import UIKit
 
-let scrollView: UIScrollView = {
-    let scroll = UIScrollView()
-    scroll.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 2000)
-    scroll.translatesAutoresizingMaskIntoConstraints = false
-    return scroll
-}()
+class HotSaleViewController: UIViewController {
 
-let contentView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .white
-    view.translatesAutoresizingMaskIntoConstraints = false
-    return view
-}()
+    //MARK: - Scroll
+    let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 2000)
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
 
-let topHotSaleImage: UIImageView = {
-    let image = UIImageView()
-    image.image = UIImage(named: "hotSaleTop")
-    image.contentMode = .scaleAspectFit
-    image.translatesAutoresizingMaskIntoConstraints = false
-    return image
-}()
+    let contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    //MARK: - Images
+    let topHotSaleImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "hotSaleTop")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
 
-let hotSaleYellowImage: UIImageView = {
-    let image = UIImageView()
-    image.image = UIImage(named: "hotsale")
-    image.contentMode = .scaleAspectFit
-    image.translatesAutoresizingMaskIntoConstraints = false
-    return image
-}()
+    let hotSaleYellowImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "hotsale")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
 
-let creditoImage: UIImageView = {
-    let image = UIImageView()
-    image.image = UIImage(named: "credito")
-    image.contentMode = .scaleAspectFit
-    image.translatesAutoresizingMaskIntoConstraints = false
-    return image
-}()
+    let creditoImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "credito")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
 
-let bikerImage: UIImageView = {
-    let image = UIImageView()
-    image.clipsToBounds = true
-    image.layer.cornerRadius = 10
-    image.image = UIImage(named: "biker")
-    image.contentMode = .scaleAspectFit
-    image.translatesAutoresizingMaskIntoConstraints = false
-    return image
-}()
+    let bikerImage: UIImageView = {
+        let image = UIImageView()
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 10
+        image.image = UIImage(named: "biker")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
 
-let shoesImage: UIImageView = {
-    let image = UIImageView()
-    image.clipsToBounds = true
-    image.layer.cornerRadius = 10
-    image.image = UIImage(named: "shoes")
-    image.contentMode = .scaleAspectFit
-    image.translatesAutoresizingMaskIntoConstraints = false
-    return image
-}()
+    let shoesImage: UIImageView = {
+        let image = UIImageView()
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 10
+        image.image = UIImage(named: "shoes")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
 
-let sportsImage: UIImageView = {
-    let image = UIImageView()
-    image.clipsToBounds = true
-    image.layer.cornerRadius = 10
-    image.image = UIImage(named: "sports")
-    image.contentMode = .scaleAspectFit
-    image.translatesAutoresizingMaskIntoConstraints = false
-    return image
-}()
+    let sportsImage: UIImageView = {
+        let image = UIImageView()
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 10
+        image.image = UIImage(named: "sports")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
 
-let preferredCategoriesLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Categorias preferidas"
-    label.translatesAutoresizingMaskIntoConstraints = false
-    return label
-}()
+    //MARK: - Label's
+    let preferredCategoriesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Categorias preferidas"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
-let labelTwo: UILabel = {
-    let label = UILabel()
-    label.text = "Second Text"
-    label.translatesAutoresizingMaskIntoConstraints = false
-    return label
-}()
+    let labelTwo: UILabel = {
+        let label = UILabel()
+        label.text = "Second Text"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
-let participatingBrandsCollectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
-    layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
-    layout.itemSize = CGSize(width: 200, height: 60)
-    let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collection.backgroundColor = .clear
-    collection.showsHorizontalScrollIndicator = false
-    collection.translatesAutoresizingMaskIntoConstraints = false
-    return collection
-}()
+    //MARK: - CollectionView
+    let participatingBrandsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
+        layout.itemSize = CGSize(width: 200, height: 60)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.backgroundColor = .clear
+        collection.showsHorizontalScrollIndicator = false
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        return collection
+    }()
 
-let bestSellerCollectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
-    layout.sectionInset = UIEdgeInsets(top: -100, left: 40, bottom: 0, right: 40)
-    layout.itemSize = CGSize(width: 300, height: 400)
-    let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collection.backgroundColor = .clear
-    collection.showsHorizontalScrollIndicator = false
-    collection.translatesAutoresizingMaskIntoConstraints = false
-    return collection
-}()
+    let bestSellerCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: -100, left: 40, bottom: 0, right: 40)
+        layout.itemSize = CGSize(width: 300, height: 400)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.backgroundColor = .clear
+        collection.showsHorizontalScrollIndicator = false
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        return collection
+    }()
 
-let participatingBrandsArray = ["samsung", "italika", "apple", "lg"]
+    //MARK: -Array's
+    let participatingBrandsArray = ["samsung", "italika", "apple", "lg"]
 
-let itemParticipatingBrand = "itemParticipatingBrand"
-let itemBestSeller = "itemBestSeller"
-
-
-
-class ViewController: UIViewController {
-
+    let itemParticipatingBrand = "itemParticipatingBrand"
+    let itemBestSeller = "itemBestSeller"
+    
+    //MARK: - Button
     let showProductsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Ver Todas", for: .normal)
@@ -131,18 +135,10 @@ class ViewController: UIViewController {
         return button
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupNavigation()
-        setupScroll()
-        
-        showProductsButton.addTarget(self, action: #selector(handleShowProducts), for: .touchUpInside)
-    }
-    
+    //MARK: - Constrains
     func setupNavigation(){
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .red
+        navigationController?.navigationBar.tintColor = elektraBlue()
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Hot Sale"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "user"), style: .plain, target: self, action: #selector(handleCreateUser))
@@ -245,10 +241,6 @@ class ViewController: UIViewController {
         participatingBrandsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         participatingBrandsCollectionView.heightAnchor.constraint(equalToConstant: 130).isActive = true
         
-        
-        
-        
-        
         bestSellerCollectionView.register(BestSellerCollectionViewCell.self, forCellWithReuseIdentifier: itemBestSeller)
         
         bestSellerCollectionView.delegate = self
@@ -261,55 +253,4 @@ class ViewController: UIViewController {
         bestSellerCollectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         
     }
-    
-    @objc func handleCreateUser(){
-        print("Create user")
-        let controller = SignUpViewController()
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    @objc func handleShowProducts(){
-        
-        let controller = ProductsViewController()
-        navigationController?.pushViewController(controller, animated: true)
-    }
-}
-
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if participatingBrandsCollectionView == collectionView{
-            return participatingBrandsArray.count
-        }
-        else {
-            return 2
-        }
-        
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if participatingBrandsCollectionView == collectionView{
-            let item = participatingBrandsCollectionView.dequeueReusableCell(withReuseIdentifier: itemParticipatingBrand, for: indexPath) as! ParticipatingBrandsCollectionViewCell
-            item.participatingBrandImage.backgroundColor = .clear
-            item.backgroundColor = .clear
-            let image = participatingBrandsArray[indexPath.row]
-            item.participatingBrandImage.image = UIImage(named: image)
-            return item
-        }
-        else{
-            let item = bestSellerCollectionView.dequeueReusableCell(withReuseIdentifier: itemBestSeller, for: indexPath) as! BestSellerCollectionViewCell
-            item.backgroundColor = .clear
-            item.phoneImage.image = UIImage(named: "phoneOne")
-            if (indexPath.row == 1){
-                item.previousPriceLabel.text = "$3,499.00"
-                item.currentPriceLabel.text = "2,699.00"
-                item.weekPriceLabel.text = "Desde $79.00 semanales"
-                item.phoneImage.image = UIImage(named: "phoneTwo")
-            }
-            return item
-        }
-        
-    }
-    
 }

@@ -12,7 +12,6 @@ class ProductTableViewCell: UITableViewCell {
 
     let productImage: UIImageView = {
         let image = UIImageView()
-//        image.backgroundColor = .blue
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -20,7 +19,6 @@ class ProductTableViewCell: UITableViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Product name"
-//        label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -28,7 +26,6 @@ class ProductTableViewCell: UITableViewCell {
     let priceLabel: UILabel = {
         let label = UILabel()
         label.text = "Price Product"
-//        label.backgroundColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

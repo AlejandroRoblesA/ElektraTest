@@ -10,14 +10,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
-    let signUpLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = "Crear cuenta"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+    //MARK: - TextField's
     let nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Nombre"
@@ -67,24 +60,19 @@ class SignUpViewController: UIViewController {
         return textField
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-        setupView()
-    }
+    let signUpButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Registrarse", for: .normal)
+        button.backgroundColor = .red
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
+    //MARK: - Constraints
     func setupView(){
         
         view.backgroundColor = .white
-        
         navigationItem.title = "Crear cuenta"
-        
-//        view.addSubview(signUpLabel)
-//        signUpLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-//        signUpLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-//        signUpLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-//        signUpLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         view.addSubview(nameTextField)
         nameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
@@ -109,6 +97,12 @@ class SignUpViewController: UIViewController {
         phoneTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         phoneTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
         phoneTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        view.addSubview(signUpButton)
+        signUpButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 20).isActive = true
+        signUpButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 80).isActive = true
+        signUpButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -80).isActive = true
+        signUpButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
 }
