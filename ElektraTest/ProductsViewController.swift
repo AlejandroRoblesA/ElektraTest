@@ -10,6 +10,12 @@ import UIKit
 
 class ProductsViewController: UIViewController {
     
+    let searchBar: UISearchBar = {
+        let search = UISearchBar()
+        search.translatesAutoresizingMaskIntoConstraints = false
+        return search
+    }()
+    
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,9 +24,29 @@ class ProductsViewController: UIViewController {
 
     let cellIdentifier = "cellIdentifier"
     
+    var productsNameArray = [String]()
+    var productsImagesArray = [String]()
+    var productsPriceArray = [Int]()
+    
+    var filteredArray = [String]()
+    var isSearching = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blue]
+        
+        
+        view.addSubview(searchBar)
+        searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        searchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        searchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        searchBar.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
         view.backgroundColor = .white
         setupTableView()
     }
@@ -41,9 +67,16 @@ class ProductsViewController: UIViewController {
                 
                 let dictionaryProducts = product as! NSDictionary
                 let productName = dictionaryProducts.object(forKey: "name") as! String
-                print(productName)
+                self.productsNameArray.append(productName)
+                let productImage = dictionaryProducts.object(forKey: "image") as! String
+                self.productsImagesArray.append(productImage)
+                let productPrice = dictionaryProducts.object(forKey: "price") as! Int
+                self.productsPriceArray.append(productPrice)
+//                print(productName)
             }
-            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
             
             return true
         }
@@ -58,7 +91,7 @@ class ProductsViewController: UIViewController {
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
@@ -69,14 +102,41 @@ class ProductsViewController: UIViewController {
 
 extension ProductsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        
+        if (isSearching){
+            return filteredArray.count
+        }
+        else{
+            return productsNameArray.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductTableViewCell
         
+        var device: String?
+        device = isSearching ? filteredArray[indexPath.row] : productsNameArray[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProductTableViewCell
+        cell.nameLabel.text = device
+        cell.productImage.loadImageUsingCacheWithUrlString(urlString: productsImagesArray[indexPath.row])
+        cell.priceLabel.text = "$" + String(productsPriceArray[indexPath.row]) + ".00"
         return cell
     }
+}
+
+extension ProductsViewController: UISearchBarDelegate{
     
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == ""{
+            isSearching = false
+            view.endEditing(true)
+            tableView.reloadData()
+        }
+        else{
+            isSearching = true
+            filteredArray = productsNameArray.filter({$0.range(of: searchBar.text!, options: .caseInsensitive) != nil})
+            tableView.reloadData()
+        }
+    }
 }
